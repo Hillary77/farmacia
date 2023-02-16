@@ -19,6 +19,7 @@
         "sass": "^1.56.1"
     },
     "dependencies": {
+        "chart": "^0.1.2",
         "chart.js": "^4.2.1",
         "jquery": "^3.6.3",
         "pdf": "^0.1.0"

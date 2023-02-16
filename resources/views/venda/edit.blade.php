@@ -15,7 +15,10 @@
             <div class="card-body">
 
                 <select class="form-control" name="client_id">
-                    <option value="">Cliente</option>
+                    @foreach($vendas as $v)
+                    <option value="{{ $v->client_id }}" selected>Cliente</option>
+                    @endforeach
+                    
                     @foreach($clientes as $cliente)
                     <option value="{{ $cliente->id }}">{{ $cliente->name }}</option>
                     @endforeach
@@ -35,8 +38,9 @@
                         </thead>
                         <tbody>
                             @foreach($vendas as $venda)
+
                             <tr>
-                                <td><input type='checkbox' value='{{$venda->product_id}}'></td>
+                                <td><input type='checkbox' value='{{$venda->product_id }}' {{ $checked =  $venda->id  == $venda->product_id  ? 'checked' : 'null'; }}></td>
                                 <td>{{ $venda->relProduto->name_product}}</td>
                                 <td>{{ 'R$' .number_format($venda->relProduto->valor, 2, ',', '.') }}</td>
                                 <td>{{ $venda->relProduto->stock}}</td>

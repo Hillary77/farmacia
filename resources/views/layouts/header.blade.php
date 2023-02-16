@@ -17,7 +17,6 @@
         {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     </head>
 
-
     <body id="page-top">
         <div id="wrapper">
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -126,12 +125,12 @@
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                        <!-- Sidebar Toggle (Topbar) -->
-                        <!--                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                                                    <i class="bi bi-chevron-compact-right"></i>
-                                                </button>-->
+                        <!--                         Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="bi bi-chevron-compact-right"></i>
+                        </button>
 
-                        <!-- Topbar Search -->
+                        <!--                         Topbar Search -->
                         <form
                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
@@ -245,9 +244,6 @@
                     </div>
                 </div>
             </div>
-
-            
-
 
             <script src="{{  url(mix('site/js/jquery.js'))}}"></script>
             <script src="{{  url(mix('site/js/bootstrap.bundle.js'))}}"></script>

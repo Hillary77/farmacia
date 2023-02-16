@@ -32,9 +32,6 @@ mix
 
         .scripts(['resources/views/site/js/chart.js'], 'public/site/js/chart.js')
 
-        .scripts(['resources/views/site/js/grafico/chart-area-demo.js'], 'public/site/js/grafico/chart-area-demo.js')
-
-        .scripts(['resources/views/site/js/grafico/chart-pie-demo.js'], 'public/site/js/grafico/chart-pie-demo.js')
 
         .version()
 

@@ -7,6 +7,9 @@ use App\Models\Cliente;
 use App\Models\Produto;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Codedge\Fpdf\Fpdf\Fpdf;
+
+
 use Illuminate\Http\Request;
 
 class VendaController extends Controller {
@@ -16,6 +19,8 @@ class VendaController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+  
+
     public function index() {
         $vendas = Venda::select('clientes.name', 'vendas.code', DB::raw('COUNT(*) as produtos, SUM(vendas.valor) as valor, SUM(vendas.quantity) as quantity, SUM(vendas.total_un) as total'))
                 ->join('clientes', 'vendas.client_id', '=', 'clientes.id')
@@ -130,9 +135,12 @@ class VendaController extends Controller {
     public function edit(Venda $venda) {
 
         $clientes = Cliente::all();
-        $vendas = Venda::where(function ($query) use ($venda) {
-                    $query->where('code', $venda->code);
-                })->get();
+
+        $vendas = Venda::rightjoin('produtos', 'vendas.product_id', '=', 'produtos.id')
+                        ->join('clientes', 'vendas.client_id', '=', 'clientes.id')
+                        ->where(function ($query) use ($venda) {
+                            $query->where('code', $venda->code);
+                        })->get();
 
         return view('venda.edit', ['clientes' => $clientes], ['vendas' => $vendas]);
     }

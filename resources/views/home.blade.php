@@ -1,6 +1,7 @@
 @extends('layouts.header')
 
 @section('content')
+
 <!-- Content Row -->
 <div class="row">
 
@@ -117,7 +118,7 @@
             <!-- Card Body -->
             <div class="card-body">
                 <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
+                    <canvas id="myChart"></canvas>
                 </div>
             </div>
         </div>
@@ -238,7 +239,6 @@
 
     <div class="col-lg-6 mb-4">
 
-
         <!-- Approach -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -256,6 +256,15 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="text/javascript">
+   var data = JSON.parse('{!!json_encode($data)!!}');
+   var mes = JSON.parse('{!!json_encode($mes)!!}');
+</script>
+
+<script src="{{ url('site/js/grafico/chart-area-demo.js') }}"></script>
+<script src="{{ url('site/js/grafico/chart-pie-demo.js') }}"></script>
 @endsection
 
 

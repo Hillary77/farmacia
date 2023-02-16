@@ -4,12 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/laravel/farmacia/app/Http/Controllers/VendaController.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/farmacia/resources/views/venda/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/farmacia/app/Models/Venda.php</file>
             <file>file:/C:/xampp/htdocs/laravel/farmacia/resources/views/home.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel/farmacia/resources/views/layouts/header.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel/farmacia/app/Http/Controllers/ClienteController.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/farmacia/app/Models/Produto.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/farmacia/app/Http/Controllers/HomeController.php</file>
             <file>file:/C:/xampp/htdocs/laravel/farmacia/resources/views/venda/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel/farmacia/app/Http/Controllers/ProdutoController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel/farmacia/resources/views/produto/index.blade.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/farmacia/public/site/js/grafico/chart-area-demo.js</file>
         </group>
     </open-files>
 </project-private>

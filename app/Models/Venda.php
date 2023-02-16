@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Casts\Json;
 use Illuminate\Database\Eloquent\Model;
 
 class Venda extends Model {
 
     protected $primaryKey = 'code';
     protected $table = 'vendas';
-    
     protected $fillable = [
         'id',
         'code',
@@ -20,15 +20,17 @@ class Venda extends Model {
         'created_at',
         'updated_at'
     ];
+//    protected $casts = [
+//        'total_un' => Json::class,
+//        'created_at' => 'array'
+//    ];
 
     public function relCliente() {
         return $this->hasOne(Cliente::class, 'id', 'client_id');
     }
-    
+
     public function relProduto() {
         return $this->hasOne(Produto::class, 'id', 'product_id');
     }
-    
-   
 
 }
