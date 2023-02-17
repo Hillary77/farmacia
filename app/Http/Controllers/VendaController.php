@@ -38,6 +38,7 @@ class VendaController extends Controller {
     public function create() {
         $clientes = Cliente::all();
         $produtos = Produto::all();
+        
         return view('venda/create', ['clientes' => $clientes], ['produtos' => $produtos]);
     }
 
@@ -51,7 +52,6 @@ class VendaController extends Controller {
 
         $validador = $request->validate([
             'client_id' => ['required'],
-            'quantity' => ['required'],
         ]);
 
         $dados = rand(0, 10000);

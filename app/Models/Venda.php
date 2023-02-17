@@ -20,10 +20,6 @@ class Venda extends Model {
         'created_at',
         'updated_at'
     ];
-//    protected $casts = [
-//        'total_un' => Json::class,
-//        'created_at' => 'array'
-//    ];
 
     public function relCliente() {
         return $this->hasOne(Cliente::class, 'id', 'client_id');

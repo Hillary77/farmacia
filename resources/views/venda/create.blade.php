@@ -51,12 +51,8 @@
                             <td>{{ $value->name_product}}</td>
                             <td>R${{  number_format($value->valor, 2,',' ,'.' )}}</td>
                             <td>{{ $value->stock}}</td>
-                            <td><input type="number" @error('quantity') is-invalid @enderror id="quantity" name="quantity[{{ $value->id }}]" required autocomplete="quantity" autofocus>
-                                @error('quantity')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror</td>
+                            <td><input type="number" id="quantity" name="quantity[{{ $value->id }}]">
+                              
 
                         </tr>
                         @endforeach

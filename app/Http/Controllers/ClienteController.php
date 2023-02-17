@@ -17,6 +17,7 @@ class ClienteController extends Controller {
     public function index() {
         //Puxar todos os dados do banco e manda para uma página visão
         $users = cliente::All();
+        
         return view('cliente.index', compact('users'));
     }
 

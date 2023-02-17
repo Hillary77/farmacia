@@ -25,19 +25,37 @@ class HomeController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-    $data = Venda::select('code','total_un', 'created_at')
+        $data = Venda::select('created_at', 'total_un')
+                ->orderBy('created_at')
                 ->get()
                 ->groupBy(function ($data) {
             return Carbon::parse($data->created_at)->format('M');
-         });
-       
-        $valor = [];
+        });
+
         $mes = [];
-        foreach($data as $key => $value){
-            
+        $valor = [];
+
+        foreach ($data as $key => $value) {
+
             $mes[] = $key;
+            $valor[$key] = $value->sum('total_un');
         }
-        return view('home', ['data' => $data],['mes' => $mes]);
+
+        $venda = Venda::select('clientes.name', 'vendas.code', DB::raw('ROUND(SUM(vendas.total_un),2) as total'))
+                ->join('clientes', 'vendas.client_id', '=', 'clientes.id')
+                ->groupBy('clientes.name', 'vendas.code')
+                ->limit(3)
+                ->get();
+
+        $nome = [];
+        $total = [];
+        foreach ($venda as $key => $value) {
+
+            $nome[] = $value->name;
+            $total[$key] = $value->total;
+        }
+
+        return view('home', ['mes' => $mes, 'valor' => $valor, 'total' => $total, 'nome' => $nome]);
     }
 
 }

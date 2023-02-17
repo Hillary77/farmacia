@@ -1,10 +1,8 @@
 @extends('layouts.header')
 
 @section('content')
-
 <!-- Content Row -->
 <div class="row">
-
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -13,7 +11,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Ganhos (Mensal)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">R$40,000</div>
                     </div>
                     <div class="col-auto">
                         <i class="bi bi-calendar" style="font-size: 2rem; color: #95999c;"></i>
@@ -31,7 +29,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Ganhos (Anual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">R$215,000</div>
                     </div>
                     <div class="col-auto">
                         <i class="bi bi-currency-dollar" style="font-size: 2rem; color: #95999c;"></i>
@@ -100,7 +98,7 @@
             <!-- Card Header - Dropdown -->
             <div
                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Valores vendas mensais</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Vendas Anuais</h6>
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -130,7 +128,7 @@
             <!-- Card Header - Dropdown -->
             <div
                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Ranking vendas do mês</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Ranking maiores vendas do mês</h6>
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -153,13 +151,13 @@
                 </div>
                 <div class="mt-4 text-center small">
                     <span class="mr-2">
-                        <i class="fas fa-circle text-primary"></i> Direct
+                        <i class="bi bi-circle-fill text-primary"></i> Direct
                     </span>
                     <span class="mr-2">
-                        <i class="fas fa-circle text-success"></i> Social
+                        <i class="bi bi-circle-fill text-success"></i> Social
                     </span>
                     <span class="mr-2">
-                        <i class="fas fa-circle text-info"></i> Referral
+                        <i class="bi bi-circle-fill text-info"></i> Referral
                     </span>
                 </div>
             </div>
@@ -194,50 +192,8 @@
 <!-- Content Row -->
 <div class="row">
 
-    <!-- Content Column -->
-    <div class="col-lg-6 mb-4">
-
-        <!-- Project Card Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Projetos Realizados</h6>
-            </div>
-            <div class="card-body">
-                <h4 class="small font-weight-bold">Server Migration <span
-                        class="float-right">20%</span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h4 class="small font-weight-bold">Sales Tracking <span
-                        class="float-right">40%</span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h4 class="small font-weight-bold">Customer Database <span
-                        class="float-right">60%</span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%"
-                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h4 class="small font-weight-bold">Payout Details <span
-                        class="float-right">80%</span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h4 class="small font-weight-bold">Account Setup <span
-                        class="float-right">Complete!</span></h4>
-                <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                         aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-6 mb-4">
+    
+    <div class="col-lg-12 mb-4">
 
         <!-- Approach -->
         <div class="card shadow mb-4">
@@ -259,11 +215,21 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script type="text/javascript">
-   var data = JSON.parse('{!!json_encode($data)!!}');
-   var mes = JSON.parse('{!!json_encode($mes)!!}');
+//GRÁFICO AREA
+var mes = JSON.parse('{!!json_encode($mes)!!}');
+var data = JSON.parse('{!!json_encode($valor)!!}');
+
+//GRÁFICO DOUGHNUT
+var nome = JSON.parse('{!!json_encode($nome)!!}');
+var total = JSON.parse('{!!json_encode($nome)!!}');
 </script>
 
+
 <script src="{{ url('site/js/grafico/chart-area-demo.js') }}"></script>
+<!--<script type="text/javascript">
+var data = JSON.parse('{!!json_encode($valor)!!}');
+</script>        -->
+
 <script src="{{ url('site/js/grafico/chart-pie-demo.js') }}"></script>
 @endsection
 
