@@ -28,24 +28,24 @@
                     </thead>
 
                     <tbody>
-                        @foreach($produtos as $produto)
+                        @foreach($produtos as $value)
                         <tr>
-                            <th>{{ $produto->id }}</th>
-                            <td>{{ $produto->name_product }}</td>
-                            <td>{{ $produto->description }}</td>
-                            <td class="text-right">{{ 'R$' .number_format($produto->valor, 2, ',', '.') }}</td>
-                            <td>{{ $produto->stock }}</td>
+                            <th>{{ $value->id }}</th>
+                            <td>{{ $value->name_product }}</td>
+                            <td>{{ $value->description }}</td>
+                            <td class="text-right">{{ 'R$' .number_format($value->valor, 2, ',', '.') }}</td>
+                            <td>{{ $value->stock }}</td>
                             <td>
-                                <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="{{ $produto->name_product }}" data-bs-text="{{ $produto->description }}" data-bs-img="{{ $produto->image }}">
-                                    <img src="{{ asset("img/".$produto->image) }}" style="width: 66px; height: 60px; "alt="..." class="img-thumbnail">
+                                <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="{{ $value->name_product }}" data-bs-text="{{ $value->description }}" data-bs-img="{{ $value->image }}">
+                                    <img src="{{ url("img/".$value->image) }}" style="width: 66px; height: 60px; "alt="..." class="img-thumbnail">
                                 </a>
                             </td>
                             <td>
-                                <form action="{{ route('produto.destroy', $produto->id)}}" method="POST">
-                                    <a type="button" class="btn btn-outline-success btn-sm rounded-circle" href="{{ route('produto.edit',$produto->id) }}"><i class = 'bi bi-pencil-square'></i></a>
+                                <form action="{{ route('produto.destroy', $value->id)}}" method="POST">
+                                    <a type="button" class="btn btn-outline-success btn-sm rounded-circle" href="{{ route('produto.edit',$value->id) }}"><i class = 'bi bi-pencil-square'></i></a>
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="item" value="{{ ($produto->id) }}">
+                                    <input type="hidden" name="item" value="{{ ($value->id) }}">
                                     <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle"><i class = 'bi bi-trash3'></i></button>
                                 </form>
                             </td>
@@ -66,8 +66,18 @@
                 <h5 class="modal-title" id="exampleModalLabel">Produto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body"></div>
-            <img class="modal-img" style=" width: 497px; height: 475px;"> 
+
+            
+            <div class="modal-body"></div><!-- comment -->
+            
+            <div class="row">
+                <div class="col-md-2 ms-auto">
+                    <img class="modal-img" style=" width: 497px; height: 475px;"> </div>
+              
+            </div>
+
+            
+            
             <hr>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -77,11 +87,7 @@
 </div>
 
 
-<script>
-
-
-
-
+<script type='text/javascript'>
     var exampleModal = document.getElementById('exampleModal');
     exampleModal.addEventListener('show.bs.modal', function (event) {
         // Button that triggered the modal
@@ -90,9 +96,9 @@
         var recipient = button.getAttribute('data-bs-whatever');
 
         var text = button.getAttribute('data-bs-text');
-        
+
         var img = button.getAttribute('data-bs-img');
-        
+
         // If necessary, you could initiate an AJAX request here
         // and then do the updating in a callback.
         //
@@ -103,11 +109,10 @@
 
         modalTitle.textContent = recipient;
         modalBody.textContent = text;
-        modalImg.attr = ('src', 'public/img' + img);
-        
-       // modalBody.value = recipient;
+        modalImg.src = 'img/' + img;
+
+        // modalBody.value = recipient;
     });
-
-
 </script>
+
 @endsection

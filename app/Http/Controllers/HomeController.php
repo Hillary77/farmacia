@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venda;
+use App\Models\Produto;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,10 @@ class HomeController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
+        $dados = Venda::select(DB::raw('SUM(vendas.total_un) as total, SUM(vendas.quantity) as quantity'))->get();
+
+        $stock = Produto::select(DB::raw('SUM(produtos.stock) as stock'))->get();
+
         $data = Venda::select('created_at', 'total_un')
                 ->orderBy('created_at')
                 ->get()
@@ -55,7 +60,7 @@ class HomeController extends Controller {
             $total[$key] = $value->total;
         }
 
-        return view('home', ['mes' => $mes, 'valor' => $valor, 'total' => $total, 'nome' => $nome]);
+        return view('home', ['mes' => $mes, 'valor' => $valor, 'total' => $total, 'nome' => $nome, 'dados' => $dados, 'stock' => $stock]);
     }
 
 }

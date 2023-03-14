@@ -34,25 +34,25 @@
 
                 <tbody>
                     
-                    @foreach($users as $user)
+                    @foreach($users as $value)
                     
                     <tr>
-                        <th>{{ $user->id }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->rg }}</td>
-                        <td>{{ date('d/m/Y'), strtotime($user->birth) }}</td>
-                        <td>{{ $user->phone }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->cpf }}</td>
-                        <td>{{ $user->state }}</td>
-                        <td>{{ $user->address }}</td>
-                        <td>{{ $user->cep }}</td>
+                        <th>{{ $value->id }}</th>
+                        <td>{{ $value->name }}</td>
+                        <td>{{ $value->rg }}</td>
+                        <td>{{ date('d/m/Y'), strtotime($value->birth) }}</td>
+                        <td>{{ $value->phone }}</td>
+                        <td>{{ $value->email }}</td>
+                        <td>{{ $value->cpf }}</td>
+                        <td>{{ $value->state }}</td>
+                        <td>{{ $value->address }}</td>
+                        <td>{{ $value->cep }}</td>
                         <td>
-                            <form action="{{ route('cliente.destroy', $user->id) }}" method="POST">
-                                <a type="button" class="btn btn-outline-success btn-sm rounded-circle" href="{{ route('cliente.edit',$user->id) }}"><i class = 'bi bi-pencil-square'></i></a>
+                            <form action="{{ route('cliente.destroy', $value->id) }}" method="POST">
+                                <a type="button" class="btn btn-outline-success btn-sm rounded-circle" href="{{ route('cliente.edit',$value->id) }}"><i class = 'bi bi-pencil-square'></i></a>
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" name="user" value="{{ ($user->id) }}">
+                                <input type="hidden" name="user" value="{{ ($value->id) }}">
                                 <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle"><i class = 'bi bi-trash3'></i></button>
                             </form>
                         </td>

@@ -40,6 +40,7 @@
                         <tbody>
                             @foreach($produtos as $value)
                         <input type="hidden" name="valor[{{ $value->id}}]" value="{{ $value->valor }}">
+                        <input type="hidden" name="stock[{{ $value->id}}]" value="{{ $value->stock }}">
 
                         <tr>
                             <td><input class="form-check" @error('product_id') is-invalid @enderror type="checkbox" name="product_id[{{ $value->id }}]" value="{{ $value->id }}">

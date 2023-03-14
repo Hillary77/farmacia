@@ -25,20 +25,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($vendas as $venda)
+                        @foreach($vendas as $value)
                         <tr>
-                            <th>{{ $venda->code }}</th>
-                            <td>{{ $venda->name }}</td>
-                            <td>{{ $venda->produtos }}</td>
-                            <td>{{ $venda->quantity }}</td>
-                            <td>{{ 'R$' .number_format($venda->total, 2, ',', '.') }}</td>
+                            <th>{{ $value->code }}</th>
+                            <td>{{ $value->name }}</td>
+                            <td>{{ $value->produtos }}</td>
+                            <td>{{ $value->quantity }}</td>
+                            <td>{{ 'R$' .number_format($value->total, 2, ',', '.') }}</td>
                             <td>
-                                <form action="{{ route('venda.destroy', $venda->code)}}" method="POST">
-                                    <a type="button" class="btn btn-outline-secondary btn-sm rounded-circle" href="{{ route('venda.show', $venda->code)}}"><i class="bi bi-filetype-pdf"></i></a>
-                                    <a type="button" class="btn btn-outline-success btn-sm rounded-circle" href="{{ route('venda.edit', $venda->code) }}"><i class = 'bi bi-pencil-square'></i></a>
+                                <form action="{{ route('venda.destroy', $value->code)}}" method="POST">
+                                    <a type="button" class="btn btn-outline-secondary btn-sm rounded-circle" href="{{ route('venda.show', $value->code)}}"><i class="bi bi-filetype-pdf"></i></a>
+                                    <a type="button" class="btn btn-outline-success btn-sm rounded-circle" href="{{ route('venda.edit', $value->code) }}"><i class = 'bi bi-pencil-square'></i></a>
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="venda" value="{{ ($venda->code) }}">
+                                    <input type="hidden" name="venda" value="{{ ($value->code) }}">
                                     <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle"><i class = 'bi bi-trash3'></i></button>
                                 </form>
                             </td>

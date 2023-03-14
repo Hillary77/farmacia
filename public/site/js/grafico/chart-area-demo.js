@@ -33,6 +33,7 @@ var chart = new Chart(ctx, {
     data: {
         labels: mes,
         datasets: [{
+                axis:'y',
                 label: "Valor",
                 lineTension: 0.3,
                 backgroundColor: "rgba(78, 115, 223, 0.05)",
@@ -51,7 +52,7 @@ var chart = new Chart(ctx, {
     options: {
         maintainAspectRatio: false,
         scales: {
-            yAxes: [{
+            y: {
                     ticks: {
                         // Include a dollar sign in the ticks
                         callback: function (value, index, values) {
@@ -65,7 +66,7 @@ var chart = new Chart(ctx, {
                         borderDash: [2],
                         zeroLineBorderDash: [2]
                     }
-                }]
+                }
         },
         legend: {
             display: false

@@ -4,22 +4,7 @@
 <!-- Content Row -->
 <div class="row">
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Ganhos (Mensal)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">R$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="bi bi-calendar" style="font-size: 2rem; color: #95999c;"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
@@ -28,11 +13,32 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Ganhos (Anual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">R$215,000</div>
+                            Total (Anual)</div>
+                        @foreach($dados as $value)
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">R${{ number_format($value->total, 2, ',', '.') }}</div>
+                    @endforeach
                     </div>
                     <div class="col-auto">
                         <i class="bi bi-currency-dollar" style="font-size: 2rem; color: #95999c;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Em Estoque</div>
+                        @foreach($stock as $value)
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $value->stock }}</div>
+                    @endforeach
+                    </div>
+                    <div class="col-auto">
+                        <i class="bi bi-calendar" style="font-size: 2rem; color: #95999c;"></i>
                     </div>
                 </div>
             </div>
@@ -45,19 +51,16 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Vendas
-                        </div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Saída estoque</div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                               <div class="row no-gutters align-items-center">
+                             @foreach($dados as $value)
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $value->quantity }}</div>
+                    @endforeach
+                    </div>
                             </div>
-                            <div class="col">
-                                <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar"
-                                         style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                         aria-valuemax="100"></div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-auto">
@@ -75,7 +78,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Horário atual</div>
+                            Tempo no sistema</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ date('d/m/Y H:i:s')}}</div>
                     </div>
                     <div class="col-auto">
@@ -151,13 +154,13 @@
                 </div>
                 <div class="mt-4 text-center small">
                     <span class="mr-2">
-                        <i class="bi bi-circle-fill text-primary"></i> Direct
+                        <i class="bi bi-circle-fill text-primary"></i> 1°Melhor venda
                     </span>
                     <span class="mr-2">
-                        <i class="bi bi-circle-fill text-success"></i> Social
+                        <i class="bi bi-circle-fill text-success"></i> 2°Melhor venda
                     </span>
                     <span class="mr-2">
-                        <i class="bi bi-circle-fill text-info"></i> Referral
+                        <i class="bi bi-circle-fill text-info"></i> 3°Melhor venda
                     </span>
                 </div>
             </div>
@@ -221,7 +224,7 @@ var data = JSON.parse('{!!json_encode($valor)!!}');
 
 //GRÁFICO DOUGHNUT
 var nome = JSON.parse('{!!json_encode($nome)!!}');
-var total = JSON.parse('{!!json_encode($nome)!!}');
+var total = JSON.parse('{!!json_encode($total)!!}');
 </script>
 
 

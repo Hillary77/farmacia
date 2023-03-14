@@ -8,8 +8,6 @@ use App\Models\Produto;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Codedge\Fpdf\Fpdf\Fpdf;
-
-
 use Illuminate\Http\Request;
 
 class VendaController extends Controller {
@@ -19,8 +17,6 @@ class VendaController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-  
-
     public function index() {
         $vendas = Venda::select('clientes.name', 'vendas.code', DB::raw('COUNT(*) as produtos, SUM(vendas.valor) as valor, SUM(vendas.quantity) as quantity, SUM(vendas.total_un) as total'))
                 ->join('clientes', 'vendas.client_id', '=', 'clientes.id')
@@ -38,7 +34,7 @@ class VendaController extends Controller {
     public function create() {
         $clientes = Cliente::all();
         $produtos = Produto::all();
-        
+
         return view('venda/create', ['clientes' => $clientes], ['produtos' => $produtos]);
     }
 
@@ -49,7 +45,6 @@ class VendaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-
         $validador = $request->validate([
             'client_id' => ['required'],
         ]);
@@ -60,14 +55,22 @@ class VendaController extends Controller {
             $total_un = $request->valor[$key] * $request->quantity[$key];
 
             if ($value) {
-                $venda = new Venda();
-                $venda->code = $dados;
-                $venda->client_id = $request->client_id;
-                $venda->product_id = $value;
-                $venda->quantity = $request->quantity[$key];
-                $venda->valor = $request->valor[$key];
-                $venda->total_un = $total_un;
-                $venda->save();
+                $insert = new Venda();
+                $insert->code = $dados;
+                $insert->client_id = $request->client_id;
+                $insert->product_id = $value;
+                $insert->quantity = $request->quantity[$key];
+                $insert->valor = $request->valor[$key];
+                $insert->total_un = $total_un;
+                $insert->save();
+            }
+            if ($value) {
+
+                $subtrair = (int) $request->stock[$key] - (int) $request->quantity[$key];
+
+                $update = Produto::select('stock')
+                        ->where('id', $value)
+                        ->update(['stock' => $subtrair]);
             }
         }
         return redirect()->route('venda.index');
@@ -163,8 +166,28 @@ class VendaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Venda $venda) {
+
+
+        $vendas = Venda::join('produtos', 'vendas.product_id', '=', 'produtos.id')
+                        ->where('code', $venda->code)->get();
+
+        foreach ($vendas as $value) {
+
+            $soma = (int) $value->stock + (int) $value->quantity;
+
+            if ($value) {
+                $update = Produto::select('stock')
+                        ->where('id', $value->id)
+                        ->update(['stock' => $soma]);
+            }
+            if ($value) {
+                $venda->delete();
+            }
+        }
+
+
         //Remover dados do banco de dados
-        $venda->delete();
+
         return redirect()->route('venda.index');
     }
 
