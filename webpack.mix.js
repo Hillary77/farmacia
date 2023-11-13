@@ -17,6 +17,7 @@ const mix = require('laravel-mix');
 //    ]);
 
 mix
+    
         //Este comando junta três códigos distintos css em um único código no public depois de executar um (NPM RUN DEV).
         .styles(['resources/views/site/css/bootstrap.css', 'resources/views/site/css/style.css'], 'public/site/css/style.css')
         // Cópia pasta do resource e recria uma em public depois de executar um (NPM RUN DEV).     
@@ -32,7 +33,7 @@ mix
 
         .scripts(['resources/views/site/js/chart.js'], 'public/site/js/chart.js')
 
-
+        .setPublicPath('public');
         .version()
 
         .sourceMaps();
